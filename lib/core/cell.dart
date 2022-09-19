@@ -88,6 +88,9 @@ class SwipeActionCell extends StatefulWidget {
   ///当选中cell的时候的一个前景蒙版颜色，默认为Colors.black.withAlpha(30)
   final Color? selectedForegroundColor;
 
+  /// max offset the cell can be dragged
+  final double? maxDragOffset;
+
   const SwipeActionCell(
       {required Key key,
       required this.child,
@@ -111,7 +114,9 @@ class SwipeActionCell extends StatefulWidget {
       this.fullSwipeFactor = 0.75,
       this.deleteAnimationDuration = 400,
       this.normalAnimationDuration = 400,
-      this.selectedForegroundColor})
+      this.selectedForegroundColor,
+      this.maxDragOffset,
+      })
       : super(key: key);
 
   ///About Key::::::
@@ -472,7 +477,11 @@ class SwipeActionCellState extends State<SwipeActionCell>
   }
 
   void _updateWithFullDraggableEffect(DragUpdateDetails details) {
-    currentOffset += Offset(details.delta.dx, 0);
+    double dragSpeed = 1;
+    if (widget.maxDragOffset != null) {
+      dragSpeed = (widget.maxDragOffset! - currentOffset.dx.abs()) / 100;
+    }
+    currentOffset += Offset(details.delta.dx * dragSpeed, 0);
 
     ///set performsFirstActionWithFullSwipe
     if (currentOffset.dx.abs() > widget.fullSwipeFactor * width) {
