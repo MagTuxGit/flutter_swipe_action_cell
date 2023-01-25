@@ -1,3 +1,6 @@
+## [3.0.7] - Fix backgroundColor.
+## [3.0.6] - Fix lints.
+## [3.0.5] - Fix lints.
 ## [3.0.4] - Add gesture settings for gestures.
 ## [3.0.3] - Remove bad code
 ## [3.0.2] - Fix issue : size not correct when change widget size and action button showing 
