@@ -435,7 +435,7 @@ class SwipeActionCellState extends State<SwipeActionCell>
 
   void _addScrollListener() {
     if (widget.closeWhenScrolling) {
-      scrollPosition = Scrollable.of(context)?.position;
+      scrollPosition = Scrollable.maybeOf(context)?.position;
       scrollPosition?.isScrollingNotifier.addListener(_scrollListener);
     }
   }
